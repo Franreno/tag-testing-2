@@ -12,6 +12,7 @@ jobs:
       - name: Trigger a workflow in server repository
         uses: peter-evans/repository-dispatch@v2
         with:
+          token: ${{ secrets.ACCESS_TOKEN }}
           repository: franreno/tag-testing-1
           event-type: update-version
           client-payload: '{"tag": "${{ github.ref }}" }'
