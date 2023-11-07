@@ -1,0 +1,17 @@
+name: Trigger Server Update
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  trigger-server-update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger a workflow in server repository
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          repository: franreno/tag-testing-1
+          event-type: update-version
+          client-payload: '{"tag": "${{ github.ref }}" }'
